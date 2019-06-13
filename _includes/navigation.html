@@ -1,7 +1,10 @@
-<nav>
-    {% for item in site.data.navigation %}
-        <a href="{{ site.baseurl }}{{ item.link }}" {% if page.url == item.link %} class="current" {% endif %}>
+<header class="sz-header">
+    <nav class="sz-header__nav">
+        {% for item in site.data.navigation %}
+        <a href="{{ site.baseurl }}{{ item.link }}"
+           class="sz-header__item {% if page.url == item.link %} sz-header__item--active {% endif %} ">
             {{ item.name }}
         </a>
-    {% endfor %}
-</nav>
+        {% endfor %}
+    </nav>
+</header>

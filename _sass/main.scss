@@ -1,3 +1,59 @@
-.current {
-  color: #00FF00;
+@import "mixins/mixins";
+@import "public";
+
+@include b(container) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  @include b(header) {
+    $height: 55px;
+    flex: none;
+    background: #393b45;
+    color: #FFFFFF;
+    @include heightCenter($height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 0 0 $height;
+
+    @include e(nav) {
+      display: flex;
+      flex: 1 0 auto;
+      padding-bottom: 5px;
+      padding-left: 30px;
+    }
+    @include e(item) {
+      cursor: pointer;
+      display: inline-block;
+      text-align: center;
+      width: 80px;
+      font-size: 16px;
+      margin-left: 30px;
+      color: #FFFFFF;
+      &:hover {
+        opacity: .7;
+      }
+
+      @include m(active) {
+        border-bottom: 2px solid #FFFFFF;
+        border-radius: 1px;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  @include b(body) {
+    flex: auto;
+    font-size: 14px;
+    background-color: #fff;
+    position: relative;
+    border-radius: 4px;
+    border: 1px solid #d4d4d4;
+    margin: 28px;
+    padding: 20px;
+
+  }
 }
