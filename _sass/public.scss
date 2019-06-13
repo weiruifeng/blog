@@ -16,3 +16,8 @@ ins, a {
 a {
   cursor: pointer;
 }
+
+ul, ol, li {
+  list-style-type: none;
+  display: block;
+}
