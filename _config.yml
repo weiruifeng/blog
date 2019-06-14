@@ -11,11 +11,6 @@ collections:
 defaults:
   - scope:
       path: ""
-      type: "authors"
-    values:
-      layout: "author"
-  - scope:
-      path: ""
       type: "categories"
     values:
       layout: "category"
