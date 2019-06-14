@@ -3,6 +3,6 @@
 - name: 博客列表
   link: /blog.html
 - name: 分类
-  link: /staff.html
-- name: 关于博客
+  link: /list.html
+- name: 关于
   link: /about.html

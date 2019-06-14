@@ -1,7 +1,11 @@
 baseurl: /blog
 
+author: 嗣宗
+
 collections:
   authors:
+    output: true
+  categories:
     output: true
 
 defaults:
@@ -10,6 +14,11 @@ defaults:
       type: "authors"
     values:
       layout: "author"
+  - scope:
+      path: ""
+      type: "categories"
+    values:
+      layout: "category"
   - scope:
       path: ""
       type: "posts"

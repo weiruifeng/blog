@@ -1,0 +1,13 @@
+---
+title: 分类
+---
+<h1>博客分类</h1>
+
+<ul>
+    {% for category in site.categories %}
+    <li>
+        <h2><a href="{{ site.baseurl }}{{ category.url }}">{{ category.name }}</a></h2>
+        <p>{{ category.content | markdownify }}</p>
+    </li>
+    {% endfor %}
+</ul>
