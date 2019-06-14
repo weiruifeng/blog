@@ -23,3 +23,5 @@ defaults:
       path: ""
     values:
       layout: "default"
+
+permalink: /:categories/:year/:month/:day/:title/

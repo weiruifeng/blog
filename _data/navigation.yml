@@ -1,8 +1,8 @@
 - name: 首页
   link: /
 - name: 博客列表
-  link: /blog.html
+  link: /blog/
 - name: 分类
-  link: /list.html
+  link: /list/
 - name: 关于
-  link: /about.html
+  link: /about/
