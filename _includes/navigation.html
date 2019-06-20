@@ -1,10 +1,27 @@
 <header class="sz-header">
-    <nav class="sz-header__nav">
-        {% for item in site.data.navigation %}
-        <a href="{{ site.baseurl }}{{ item.link }}"
-           class="sz-header__item {% if page.url == item.link %} sz-header__item--active {% endif %} ">
-            {{ item.name }}
-        </a>
-        {% endfor %}
-    </nav>
+    <div class="sz-header__background sz-homepage__background--inverted"></div>
+    <div class="sz-header__about is-left">
+        <div class="sz-header__introduction">
+            <a class="sz-header__icon" href="/" tabindex="-1">
+                <img src="/blog/assets/icons/icon.png" alt="sizong" data-ignore="">
+            </a>
+            <h2>
+                <a href="/">嗣宗</a>
+            </h2>
+            <p>剖竹十日间，一朝风化清。</p>
+        </div>
+        <nav class="sz-header__nav">
+            <span class="sz-header__text">导航：</span>
+            <ul>
+                {% for item in site.data.navigation %}
+                <li>
+                    <a href="{{ site.baseurl }}{{ item.link }}"
+                       class="sz-header__item is-no-hover">
+                        {{ item.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
 </header>

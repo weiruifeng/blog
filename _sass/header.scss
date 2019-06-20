@@ -1,0 +1,90 @@
+@import "mixins/mixins";
+
+@include b(header) {
+  $background-url: '/blog/assets/img/bg.png';
+
+  $width: 26vw;
+  height: 100vh;
+  width: $width;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  min-height: 100vh;
+  z-index: 2;
+
+  a {
+    color: #FFFFFF;
+    border-bottom-color: rgba(255,255,255,0.2);
+  }
+
+  @include e(background) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: $width;
+    height: 100%;
+    background-position: bottom right;
+    background-size: auto 65vh;
+    background-color: $background-color;
+    background-repeat: no-repeat;
+    background-image: url($background-url);
+
+    @include m(inverted) {
+      filter: invert(32%);
+    }
+  }
+  @include e(about) {
+    position: relative;
+    z-index: 3;
+    max-width: 21rem;
+    padding: 1.5rem;
+    contain: content;
+    &.is-left {
+      align-self: flex-start;
+      padding-top: 15vh;
+    }
+
+    @include e(introduction) {
+      $width: 100px;
+      @include e(icon) {
+        img {
+          width: $width;
+          height: $width;
+          border-radius: 50%;
+        }
+      }
+      h2 {
+        margin-top: 0;
+      }
+    }
+
+    @include e(nav) {
+      ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      @include e(text) {
+        display: unset;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+
+      @include e(item) {
+        display: inline-block;
+        line-height: 1.75;
+        padding: .25rem;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+      }
+    }
+  }
+}

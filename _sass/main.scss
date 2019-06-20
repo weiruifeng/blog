@@ -1,59 +1,96 @@
 @import "mixins/mixins";
 @import "public";
+@import "header";
+
+@include b(homepage) {
+  $background-url: '/blog/assets/img/bg.png';
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  min-height: 100vh;
+  z-index: 2;
+
+  a {
+    color: #fff;
+    border-bottom-color: rgba(255,255,255,0.2);
+  }
+
+  @include e(background) {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 50vw);
+    width: 100vw;
+    height: 100%;
+    background: #202020 center / cover;
+    background-image: url($background-url);
+
+    @include m(inverted) {
+      filter: invert(32%);
+    }
+  }
+  @include e(about) {
+    position: relative;
+    z-index: 3;
+    max-width: 21rem;
+    padding: 1.5rem;
+    contain: content;
+  }
+  @include e(introduction) {
+    $width: 100px;
+    @include e(icon) {
+      img {
+        width: $width;
+        height: $width;
+        border-radius: 50%;
+      }
+    }
+    h2 {
+      margin-top: 0;
+    }
+  }
+  @include e(nav) {
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    @include e(text) {
+      display: unset;
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    @include e(item) {
+      display: inline-block;
+      line-height: 1.75;
+      padding: .25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+  }
+}
 
 @include b(container) {
   display: flex;
-  flex-direction: column;
   height: 100%;
-  color: #333333;
-
-  @include b(header) {
-    $height: 55px;
-    flex: none;
-    background: #393b45;
-    color: #FFFFFF;
-    @include heightCenter($height);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex: 0 0 $height;
-
-    @include e(nav) {
-      display: flex;
-      flex: 1 0 auto;
-      padding-bottom: 5px;
-      padding-left: 30px;
-    }
-    @include e(item) {
-      cursor: pointer;
-      display: inline-block;
-      text-align: center;
-      width: 80px;
-      font-size: 16px;
-      margin-left: 30px;
-      color: #FFFFFF;
-      &:hover {
-        opacity: .7;
-      }
-
-      @include m(active) {
-        border-bottom: 2px solid #FFFFFF;
-        border-radius: 1px;
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
-  }
+  color: $text-color;
+  overflow: hidden;
 
   @include b(body) {
+    height: 100%;
     flex: auto;
-    background-color: #fff;
+    background-color: $background-color;
     position: relative;
-    border-radius: 4px;
-    border: 1px solid #d4d4d4;
-    margin: 28px;
     padding: 20px 30px;
+    overflow-y: auto;
 
     @include b(blog) {
       $spacing: 10px;
