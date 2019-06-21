@@ -2,10 +2,6 @@
 
 @include b(header) {
   $background-url: '/blog/assets/img/bg.png';
-
-  $width: 26vw;
-  height: 100vh;
-  width: $width;
   position: relative;
   display: flex;
   justify-content: center;
@@ -23,15 +19,10 @@
   @include e(background) {
     position: absolute;
     top: 0;
-    right: 0;
-    width: $width;
     height: 100%;
-    background-position: bottom right;
-    background-size: auto 65vh;
     background-color: $background-color;
     background-repeat: no-repeat;
     background-image: url($background-url);
-
     @include m(inverted) {
       filter: invert(32%);
     }
@@ -42,10 +33,6 @@
     max-width: 21rem;
     padding: 1.5rem;
     contain: content;
-    &.is-left {
-      align-self: flex-start;
-      padding-top: 15vh;
-    }
 
     @include e(introduction) {
       $width: 100px;
@@ -85,6 +72,31 @@
         padding: .25rem;
         border-bottom: 1px solid rgba(255,255,255,0.2);
       }
+    }
+  }
+
+  &.is-left {
+    $width: 25vw;
+    height: 100vh;
+    width: $width;
+    flex: 0 0 $width;
+    @include e(background) {
+      right: 0;
+      width: $width;
+      background-position: bottom right;
+      background-size: auto 65vh;
+    }
+    @include e(about) {
+      align-self: flex-start;
+      padding-top: 15vh;
+    }
+  }
+  &.is-home {
+    @include e(background) {
+      left: calc(50% - 50vw);
+      width: 100vw;
+      background-position: center;
+      background-size: cover;
     }
   }
 }
