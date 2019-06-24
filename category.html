@@ -6,7 +6,7 @@ layout: structure
     <h1 class="sz-blog__title">博客分类</h1>
     {% for category in site.categories %}
     <div class="sz-category">
-        <h2 data-name="{{ category[0] }}">
+        <h2 class="is-arrow-up" data-name="{{ category[0] }}">
             <a name="{{ category[0] }}"></a>
             {{ category[0] }}
             <span class="sz-category__total">共{{category[1].size}}篇</span>
@@ -51,10 +51,12 @@ layout: structure
                     const $ul = $target.nextElementSibling;
                     if (hash && $target.dataset.name === hash) {
                         $ul.classList.remove('is-hide');
+                        $target.classList.remove('is-arrow-up');
                         $target.classList.add('is-arrow-down');
                     } else {
                         $ul.classList.add('is-hide');
                         $target.classList.remove('is-arrow-down');
+                        $target.classList.add('is-arrow-up');
                     }
                 });
             }

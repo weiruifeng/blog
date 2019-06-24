@@ -2,34 +2,73 @@
 title: 分类
 layout: structure
 ---
-<h3>page.title</h3>
-{% for tag in site.tags %}
-<div class="sz-category">
-    <span>{{ tag[0] }}</span>
-    <span>{{tag[1].size}}篇</span>
-</div>
-<ul>
-    {% for post in tag[1] %}
-    <li>
-        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-    </li>
+<h1 class="sz-blog__title">标签分类</h1>
+
+<div id="sz-tag">
+    {% for tag in site.tags %}
+    <span class="sz-tag" data-name="{{ tag[0] }}">{{ tag[0] }}</span>
     {% endfor %}
-</ul>
+</div>
+
+{% for tag in site.tags %}
+<div class="sz-category is-hide" data-name="{{ tag[0] }}">
+    <h2>
+        {{ tag[0] }}
+        <span class="sz-category__total">共{{tag[1].size}}篇</span>
+    </h2>
+    <ul class="sz-blog__list">
+        {% for post in tag[1] %}
+        <li class="sz-blog__item">
+            <h3 class="sz-blog__header">
+                <a href="{{ site.baseurl }}{{ post.url }}">
+                    {{ post.title }}
+                </a>
+            </h3>
+            <p class="sz-blog__date">{{ post.date | date: "%Y-%m-%d" }}</p>
+            <p lass="sz-blog__excerpt">{{ post.excerpt | markdownify }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endfor %}
 
 <script>
-    var categories = {
-        {% for category in site.categories %}
-    {{ category[0] }}: [
-        {% for post in category[1] %}
-            {
-                url: '{{ post.url }}',
-                title: '{{post.title}}',
-                date: '{{ post.date | date: "%Y-%m-%d" }}'
-            },
-        {% endfor %}
-    ],
-    {% endfor %}
+    window.onload = function() {
+        var $tag = document.getElementById('sz-tag');
+        $tag.addEventListener('click', (e) => {
+            if(e.target && e.target.nodeName.toUpperCase() === 'SPAN') {
+                var hash = location.hash;
+                var name = e.target.dataset.name;
+                if (!~hash.indexOf(name)) {
+                    window.location.href = `#${name}`;
+                } else {
+                    window.location.hash = '#';
+                }
+            }
+        }, false);
+
+        window.addEventListener('hashchange', hashChange, false);
+
+        function hashChange() {
+            const hash = (location.hash || '#').replace('#', '');
+            const $spanList = document.querySelectorAll(`span[data-name]`);
+            const $divList = document.querySelectorAll(`div[data-name]`);
+            $spanList.forEach(($span) => {
+                if (hash && $span.dataset.name === hash) {
+                    $span.classList.add('is-active');
+                } else {
+                    $span.classList.remove('is-active');
+                }
+            });
+            $divList.forEach(($div) => {
+                if (hash && $div.dataset.name === hash) {
+                    $div.classList.remove('is-hide');
+                } else {
+                    $div.classList.add('is-hide');
+                }
+            });
+        }
+
+        hashChange();
     };
-    console.log(categories);
 </script>

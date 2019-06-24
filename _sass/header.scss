@@ -37,6 +37,7 @@
     @include e(introduction) {
       $width: 100px;
       @include e(icon) {
+        outline: none;
         img {
           width: $width;
           height: $width;

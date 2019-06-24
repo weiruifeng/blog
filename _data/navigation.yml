@@ -1,5 +1,3 @@
-- name: 首页
-  link: /
 - name: 博客列表
   link: /list/
 - name: 分类
