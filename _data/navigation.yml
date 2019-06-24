@@ -1,8 +1,8 @@
 - name: 博客列表
-  link: /list/
+  link: /list
 - name: 分类
-  link: /category/
+  link: /category
 - name: 标签
-  link: /tag/
+  link: /tag
 - name: 关于
-  link: /about/
+  link: /about
