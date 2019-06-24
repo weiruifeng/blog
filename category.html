@@ -1,0 +1,65 @@
+---
+title: 分类
+layout: structure
+---
+<div id="sz-category">
+    <h1 class="sz-blog__title">博客分类</h1>
+    {% for category in site.categories %}
+    <div class="sz-category">
+        <h2 data-name="{{ category[0] }}">
+            <a name="{{ category[0] }}"></a>
+            {{ category[0] }}
+            <span class="sz-category__total">共{{category[1].size}}篇</span>
+        </h2>
+        <ul class="sz-blog__list is-hide">
+            {% for post in category[1] %}
+            <li class="sz-blog__item">
+                <h3 class="sz-blog__header">
+                    <a href="{{ site.baseurl }}{{ post.url }}">
+                        {{ post.title }}
+                    </a>
+                </h3>
+                <p class="sz-blog__date">{{ post.date | date: "%Y-%m-%d" }}</p>
+                <p lass="sz-blog__excerpt">{{ post.excerpt | markdownify }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+
+    <script>
+        window.onload = function() {
+            var $category = document.getElementById('sz-category');
+            $category.addEventListener('click', (e) => {
+                if(e.target && e.target.nodeName.toUpperCase() === 'H2') {
+                    var hash = location.hash;
+                    var name = e.target.dataset.name;
+                    if (!~hash.indexOf(name)) {
+                        window.location.href = `#${name}`;
+                    } else {
+                        window.location.hash = '#';
+                    }
+                }
+            }, false);
+
+            window.addEventListener('hashchange', hashChange, false);
+
+            function hashChange() {
+                const hash = (location.hash || '#').replace('#', '');
+                const $targets = document.querySelectorAll(`[data-name]`);
+                $targets.forEach(($target) => {
+                    const $ul = $target.nextElementSibling;
+                    if (hash && $target.dataset.name === hash) {
+                        $ul.classList.remove('is-hide');
+                        $target.classList.add('is-arrow-down');
+                    } else {
+                        $ul.classList.add('is-hide');
+                        $target.classList.remove('is-arrow-down');
+                    }
+                });
+            }
+
+            hashChange();
+        };
+    </script>
+</div>

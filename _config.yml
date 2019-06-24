@@ -5,15 +5,8 @@ author: 嗣宗
 collections:
   authors:
     output: true
-  categories:
-    output: true
 
 defaults:
-  - scope:
-      path: ""
-      type: "categories"
-    values:
-      layout: "category"
   - scope:
       path: ""
       type: "posts"
@@ -24,4 +17,4 @@ defaults:
     values:
       layout: "default"
 
-permalink: /:categories/:year/:month/:day/:title/
+permalink: /:year/:month/:day/:title

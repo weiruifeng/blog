@@ -1,0 +1,35 @@
+---
+title: 分类
+layout: structure
+---
+<h3>page.title</h3>
+{% for tag in site.tags %}
+<div class="sz-category">
+    <span>{{ tag[0] }}</span>
+    <span>{{tag[1].size}}篇</span>
+</div>
+<ul>
+    {% for post in tag[1] %}
+    <li>
+        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endfor %}
+
+<script>
+    var categories = {
+        {% for category in site.categories %}
+    {{ category[0] }}: [
+        {% for post in category[1] %}
+            {
+                url: '{{ post.url }}',
+                title: '{{post.title}}',
+                date: '{{ post.date | date: "%Y-%m-%d" }}'
+            },
+        {% endfor %}
+    ],
+    {% endfor %}
+    };
+    console.log(categories);
+</script>

@@ -1,13 +1,13 @@
 ---
 layout: structure
 ---
-<h1>{{ page.name }}</h1>
+<h1>{{ page.url }}</h1>
 
-{{ content }}
+<!--{{ content }}-->
 
-<ul>
-    {% assign filtered_posts = site.posts | where: 'category', page.name %}
-    {% for post in filtered_posts %}
-    <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-</ul>
+<!--<ul>-->
+<!--    {% assign filtered_posts = site.posts | where: 'category', page.name %}-->
+<!--    {% for post in filtered_posts %}-->
+<!--    <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>-->
+<!--    {% endfor %}-->
+<!--</ul>-->

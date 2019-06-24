@@ -1,8 +1,10 @@
 - name: 首页
   link: /
 - name: 博客列表
-  link: /blog/
-- name: 分类
   link: /list/
+- name: 分类
+  link: /category/
+- name: 标签
+  link: /tag/
 - name: 关于
   link: /about/

@@ -1,14 +1,20 @@
 ---
-title: 分类
+title: 列表
 layout: structure
 ---
-<h1>博客分类</h1>
-
-<ul>
-    {% for category in site.categories %}
-    <li>
-        <h2><a href="{{ site.baseurl }}{{ category.url }}">{{ category.name }}</a></h2>
-        <p>{{ category.content | markdownify }}</p>
-    </li>
-    {% endfor %}
-</ul>
+<div class="sz-blog">
+    <h1 class="sz-blog__title">最新博客</h1>
+    <ul class="sz-blog__list">
+        {% for post in site.posts %}
+        <li class="sz-blog__item">
+            <h3 class="sz-blog__header">
+                <a href="{{ site.baseurl }}{{ post.url }}">
+                    {{ post.title }}
+                </a>
+            </h3>
+            <p class="sz-blog__date">{{ site.author }} - {{ post.date | date: "%Y-%m-%d" }}</p>
+            <p class="sz-blog__excerpt">{{ post.excerpt }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
