@@ -1,9 +1,11 @@
 <header class="sz-header is-{{include.nav}}">
-    <div id="background" class="sz-header__background sz-header__background--inverted"></div>
+    <div id="background" class="sz-header__background
+    sz-header__background--min
+    sz-header__background--inverted"></div>
     <div class="sz-header__about">
         <div class="sz-header__introduction">
             <a class="sz-header__icon" href="{{ site.baseurl }}/" tabindex="-1">
-                <img src="{{ site.baseurl }}/assets/icons/icon.jpg" alt="sizong" data-ignore="">
+                <img id="avatar" src="{{ site.baseurl }}/assets/icons/icon-min.jpg" alt="sizong" data-ignore="">
             </a>
             <h2>
                 <a href="{{ site.baseurl }}/">嗣宗</a>
@@ -25,39 +27,41 @@
         </nav>
     </div>
     <script>
-        onReady(() => {
-            const $background = document.getElementById('background');
-            let backUrl = localStorage.getItem('backImage');
-            if (!backUrl) {
+        function setLocal(id, src, fn) {
+            const $id = document.getElementById(id);
+            let baseUrl = localStorage.getItem(`${id}Image`);
+            if (!baseUrl) {
                 const heavyImage = new Image();
-                heavyImage.src = '/blog/assets/img/bg.png';
-                //当图片加载完成的时候触发回调函数
+                heavyImage.src = src;
                 heavyImage.addEventListener('load', function () {
-                    var imgCanvas = document.createElement('canvas'),
-                        imgContext = imgCanvas.getContext('2d');
-
-                    // 确保canvas元素的大小和图片尺寸一致
+                    const imgCanvas = document.createElement('canvas');
+                    const imgContext = imgCanvas.getContext('2d');
                     imgCanvas.width = heavyImage.width;
                     imgCanvas.height = heavyImage.height;
-
-                    // 渲染图片到canvas中
                     imgContext.drawImage(heavyImage, 0, 0, heavyImage.width, heavyImage.height);
-
-                    // 用data url的形式取出
-                    var imgAsDataURL = imgCanvas.toDataURL('image/png');
-
-                    // 保存到本地存储中
+                    var imgAsDataURL = imgCanvas.toDataURL();
                     try {
-                        localStorage.setItem('backImage', imgAsDataURL);
-                        $background.style.backgroundImage = `url(${imgAsDataURL})`;
+                        localStorage.setItem(`${id}Image`, imgAsDataURL);
+                        fn($id, imgAsDataURL);
                     }
                     catch (e) {
                         console.log('Storage failed: ' + e);
                     }
                 }, false);
             } else {
-                $background.style.backgroundImage = `url(${backUrl})`;
+                fn($id, baseUrl);
             }
+        }
+        onReady(() => {
+            if (localStorage.getItem('backgroundImage')) {
+                document.getElementById('background').classList.remove('sz-header__background--min');
+            }
+            setLocal('background', '/blog/assets/img/bg.png', ($id, url) => {
+                $id.style.backgroundImage = `url(${url})`;
+            });
+            setLocal('avatar', '/blog/assets/icons/icon.jpg', ($id, url) => {
+                $id.src = url;
+            });
         });
     </script>
 </header>
