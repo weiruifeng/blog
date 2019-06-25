@@ -1,6 +1,7 @@
 @import "mixins/mixins";
 
 @include b(header) {
+  $background-url: '/blog/assets/img/bg-min.png';
   position: relative;
   display: flex;
   justify-content: center;
@@ -21,6 +22,7 @@
     height: 100%;
     background-color: $background-color;
     background-repeat: no-repeat;
+    background-image: url($background-url);
     @include m(inverted) {
       filter: invert(32%);
     }
