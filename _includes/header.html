@@ -30,7 +30,7 @@
             let backUrl = localStorage.getItem('backImage');
             if (!backUrl) {
                 const heavyImage = new Image();
-                backUrl = heavyImage.src = '/blog/assets/img/bg.png';
+                heavyImage.src = '/blog/assets/img/bg.png';
                 //当图片加载完成的时候触发回调函数
                 heavyImage.addEventListener('load', function () {
                     var imgCanvas = document.createElement('canvas'),
@@ -49,13 +49,15 @@
                     // 保存到本地存储中
                     try {
                         localStorage.setItem('backImage', imgAsDataURL);
+                        $background.style.backgroundImage = `url(${imgAsDataURL})`;
                     }
                     catch (e) {
                         console.log('Storage failed: ' + e);
                     }
                 }, false);
+            } else {
+                $background.style.backgroundImage = `url(${backUrl})`;
             }
-            $background.style.backgroundImage = `url(${backUrl})`;
         });
     </script>
 </header>
