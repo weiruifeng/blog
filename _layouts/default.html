@@ -6,12 +6,7 @@
     <title>{{ page.title }}</title>
     <link rel="shortcut icon" href="/blog/assets/icons/favicon.ico">
     <link rel="stylesheet" href="/blog/assets/css/styles.css">
-    <script type="application/javascript">
-        (function preloader() {
-            var heavyImage = new Image();
-            heavyImage.src = "/blog/assets/img/bg.png";
-        })()
-    </script>
+    {% include script.html %}
 </head>
 <body>
 {{ content }}

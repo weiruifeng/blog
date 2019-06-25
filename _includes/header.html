@@ -1,5 +1,5 @@
 <header class="sz-header is-{{include.nav}}">
-    <div class="sz-header__background sz-header__background--inverted"></div>
+    <div id="background" class="sz-header__background sz-header__background--inverted"></div>
     <div class="sz-header__about">
         <div class="sz-header__introduction">
             <a class="sz-header__icon" href="{{ site.baseurl }}/" tabindex="-1">
@@ -24,4 +24,39 @@
             </ul>
         </nav>
     </div>
+    <script>
+        onReady(() => {
+            const $background = document.getElementById('background');
+            let backUrl = localStorage.getItem('backImage');
+            if (!backUrl) {
+                const heavyImage = new Image();
+                backUrl = heavyImage.src = '/blog/assets/img/bg.png';
+                //当图片加载完成的时候触发回调函数
+                heavyImage.addEventListener('load', function () {
+                    console.log('sass');
+                    var imgCanvas = document.createElement('canvas'),
+                        imgContext = imgCanvas.getContext('2d');
+
+                    // 确保canvas元素的大小和图片尺寸一致
+                    imgCanvas.width = heavyImage.width;
+                    imgCanvas.height = heavyImage.height;
+
+                    // 渲染图片到canvas中
+                    imgContext.drawImage(heavyImage, 0, 0, heavyImage.width, heavyImage.height);
+
+                    // 用data url的形式取出
+                    var imgAsDataURL = imgCanvas.toDataURL('image/png');
+
+                    // 保存到本地存储中
+                    try {
+                        localStorage.setItem('backImage', imgAsDataURL);
+                    }
+                    catch (e) {
+                        console.log('Storage failed: ' + e);
+                    }
+                }, false);
+            }
+            $background.style.backgroundImage = `url(${backUrl})`;
+        });
+    </script>
 </header>

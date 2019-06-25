@@ -33,7 +33,7 @@ layout: structure
 {% endfor %}
 
 <script>
-    window.onload = function() {
+    onReady(() => {
         var $tag = document.getElementById('sz-tag');
         $tag.addEventListener('click', (e) => {
             if(e.target && e.target.nodeName.toUpperCase() === 'SPAN') {
@@ -68,7 +68,6 @@ layout: structure
                 }
             });
         }
-
         hashChange();
-    };
+    });
 </script>
