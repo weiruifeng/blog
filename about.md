@@ -2,5 +2,5 @@
 title: 关于
 layout: structure
 ---
-# About page
-this page tells you a little bit about me.
+# 关于我
+喜欢钻研技术，目前还不太习惯写文章，所以搭建博客方便自己沉淀积累，也与大家共同学习。

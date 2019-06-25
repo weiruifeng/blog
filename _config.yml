@@ -2,6 +2,8 @@ baseurl: /blog
 
 author: 嗣宗
 
+motto: 剖竹十日间，一朝风化清。
+
 collections:
   authors:
     output: true
