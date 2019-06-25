@@ -33,7 +33,38 @@
 
         @include e(date) {
           color: #556677;
-          padding-top: .5em;
+          font-size: 12px;
+        }
+
+        @include e(category) {
+          text-decoration:none;
+          font-style: italic;
+          color: #006699;
+          &:hover {
+            color: #409eff;
+          }
+        }
+
+        @include e(tag) {
+          display: inline-block;
+          font-size: 12px;
+          border: 1px solid;
+          box-sizing: border-box;
+          white-space: nowrap;
+          cursor: pointer;
+          background-color: #f4f4f5;
+          border-color: #e9e9eb;
+          color: #909399;
+          text-decoration:none;
+          height: 20px;
+          padding: 0 10px;
+          line-height: 18px;
+          border-radius: 10px;
+          &:hover {
+            background-color: #ecf5ff;
+            color: #409eff;
+            border-color: #d9ecff;
+          }
         }
       }
     }
@@ -94,6 +125,11 @@
   background-color: #f4f4f5;
   border-color: #e9e9eb;
   color: #909399;
+  &:hover {
+    background-color: #ecf5ff;
+    color: #409eff;
+    border-color: #d9ecff;
+  }
   &.is-active {
     background-color: #ecf5ff;
     color: $title-color;
