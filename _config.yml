@@ -4,6 +4,15 @@ author: 嗣宗
 
 motto: 剖竹十日间，一朝风化清。
 
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+highlighter: rouge
+
 collections:
   authors:
     output: true

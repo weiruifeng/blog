@@ -1,5 +1,8 @@
 <header class="sz-header is-{{include.nav}}">
     <div id="background" class="sz-header__background sz-header__background--inverted"></div>
+    <button class="sz-header__toggle" aria-label="展开导航" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
     <div class="sz-header__about">
         <div class="sz-header__introduction">
             <a class="sz-header__icon" href="{{ site.baseurl }}/" tabindex="-1">
@@ -60,6 +63,16 @@
             setLocal('avatar', '/blog/assets/icons/icon.jpg', ($id, url) => {
                 $id.src = url;
             });
+
+            const toggle = document.querySelector('.sz-header__toggle');
+            const about = document.querySelector('.sz-header__about');
+            if (toggle && about) {
+                toggle.addEventListener('click', () => {
+                    const isOpen = about.classList.toggle('is-open');
+                    toggle.classList.toggle('is-open', isOpen);
+                    toggle.setAttribute('aria-expanded', isOpen);
+                });
+            }
         });
     </script>
 </header>

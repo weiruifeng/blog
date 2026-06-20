@@ -11,10 +11,12 @@
   @include b(body) {
     height: 100vh;
     flex: auto;
+    min-width: 0;
     background-color: $background-color;
     position: relative;
     padding: 20px 30px;
     overflow-y: auto;
+    overflow-x: hidden;
     box-sizing: border-box;
 
     @include b(blog) {
@@ -109,6 +111,22 @@
     font-size: 12px;
     opacity: .8;
     font-weight: normal;
+  }
+}
+
+@media (max-width: 768px) {
+  @include b(container) {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+
+    @include b(body) {
+      height: auto;
+      min-height: 0;
+      padding: 16px;
+      overflow: visible;
+    }
   }
 }
 
