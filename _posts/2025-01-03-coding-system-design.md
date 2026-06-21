@@ -159,6 +159,7 @@ class CircuitBreaker {
 1. **高并发下 HALF_OPEN 只允许一个探测请求的协程安全：** Node.js 是单线程事件循环，`this.probing = true` 的赋值是同步操作，在检查和赋值之间不会有其他协程插入（因为没有 `await`），所以上述实现已经是安全的。若在多线程环境（如 Java），需要用 `AtomicBoolean` 的 `compareAndSet(false, true)` 实现 CAS 操作。
 
 2. **双模型热备封装：**
+
 ```ts
 class DualModelExecutor {
   constructor(
